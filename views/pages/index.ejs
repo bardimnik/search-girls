@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Girls by @bifot</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/favicon.png" type="image/png" />
+  <meta name="viewport" content="user-scalable=0, width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <% for (var key in data) { %>
+      <div class="item">
+        <div class="item__photo">
+          <img class="item__photo__image" src="<%= data[key]["photo"] %>">
+        </div>
+        <div class="item__info">
+          <% if (data[key]["online"]) { %>
+          <p class="item__info__id status__online">
+            <a href="https://vk.com/id<%= data[key]["id"] %>">
+              <%= data[key]["name"] %>
+            </a>
+          </p>
+          <% } else { %>
+          <p class="item__info__id status__offline">
+            <a href="https://vk.com/id<%= data[key]["id"] %>">
+              <%= data[key]["name"] %>
+            </a>
+          </p>
+          <% } %>
+          <% if (data[key]["relation"] == 1) { %>
+            <p class="item__info__relation">не замужем</p>
+          <% } else if (data[key]["relation"] == 3) { %>
+            <p class="item__info__relation">помолвлена</p>
+          <% } else if (data[key]["relation"] == 4) { %>
+            <p class="item__info__relation">замужем</p>
+          <% } %>
+          <p class="item__info__groups">
+            <span class="item__info__groups__count">
+              <%= data[key]["groupsCount"] %> подписок
+            </span>
+            <span class="item__info__groups__count count__shit">
+              <strong>Плохие подписки:</strong>
+              <%= data[key]["groupsShitCount"] %>
+            </span>
+          </p>
+          <p class="item__send__message">
+            <a href='<%= data[key]["sendMessageURL"] %>' onclick="nw(this.href); return false;">
+              Написать сообщение
+            </a>
+          </p>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  <div class="footer">
+    <p class="footer_copyright">
+      © Search Girls by <a href="http://bifot.ru">@bifot</a>, 2016
+    </p>
+  </div>
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+  <script src="js/common.js"></script>
+</body>
+</html>
