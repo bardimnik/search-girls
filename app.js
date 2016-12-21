@@ -4,13 +4,25 @@ var request = require("sync-request");
 var app = express();
 
 var girl = new Object();
-var token = "YOUR_TOKEN_VK";
-var group = "literabook";
+var token = "TOKEN";
+var group = "bugurt_thread";
 
-var makeThousandGirls = function (offset) {
+var countMembers = function(offset, max) {
   var res = request("GET", "https://api.vk.com/method/groups.getMembers?group_id="
     + group + "&offset=" + offset
-    + "&sort=id_desc&fields=sex,can_write_private_message,photo_max_orig,online,relation,city&v=5.60");
+    + "&sort=id_desc&fields=sex,can_write_private_message,photo_400_orig,online,relation,city&v=5.60");
+  var body = JSON.parse(res.getBody());
+
+  if (body.response.count > max)
+    return max;
+
+  return body.response.count;
+}
+
+var makeThousandGirls = function(offset) {
+  var res = request("GET", "https://api.vk.com/method/groups.getMembers?group_id="
+    + group + "&offset=" + offset
+    + "&sort=id_desc&fields=sex,can_write_private_message,photo_400_orig,online,relation,city&v=5.60");
   var body = JSON.parse(res.getBody());
 
   try {
@@ -31,7 +43,7 @@ var makeThousandGirls = function (offset) {
         // console.log("City or relation not found...");
       }
 
-      var photo = profile.photo_max_orig;
+      var photo = profile.photo_400_orig;
       var online = profile.online;
       var relation = profile.relation;
       var message = profile.can_write_private_message;
@@ -76,11 +88,11 @@ var makeThousandGirls = function (offset) {
         girl[fullName]["id"] = id;
         girl[fullName]["photo"] = photo;
         girl[fullName]["relation"] = relation;
-        girl[fullName]["groupsCount"] = groupsCount;
         girl[fullName]["online"] = online;
+        girl[fullName]["groupsCount"] = groupsCount;
         girl[fullName]["groupsShitCount"] = groupsShitCount;
-        girl[fullName]["sendMessageURL"] = sendMessageURL;
         // girl[fullName]["groupsAllList"] = groupsAllList;
+        girl[fullName]["sendMessageURL"] = sendMessageURL;
       }
     });
   } catch (e) {
@@ -96,6 +108,12 @@ app.get('/', function(req, res) {
   });  
 });
 
+for (var i = 0; i < countMembers(0, 40000); i += 1000) {
+  makeThousandGirls(i);
+
+  console.log("#" + (i / 1000) + " 1000 загрузили.");
+}
+
 app.listen(8080);
 
-console.log("Готово. ---> http://localhost:8080");
+console.log("http://localhost:8080");
