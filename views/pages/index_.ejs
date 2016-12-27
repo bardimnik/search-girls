@@ -16,17 +16,17 @@
         </div>
         <div class="item__info">
           <% if (data[key]["online"]) { %>
-          <p class="item__info__id status__online">
-            <a href="https://vk.com/id<%= data[key]["id"] %>">
-              <%= data[key]["name"] %>
-            </a>
-          </p>
+            <p class="item__info__id status__online">
+              <a href="https://vk.com/id<%= data[key]["id"] %>">
+                <%= data[key]["name"] %>
+              </a>
+            </p>
           <% } else { %>
-          <p class="item__info__id status__offline">
-            <a href="https://vk.com/id<%= data[key]["id"] %>">
-              <%= data[key]["name"] %>
-            </a>
-          </p>
+            <p class="item__info__id status__offline">
+              <a href="https://vk.com/id<%= data[key]["id"] %>">
+                <%= data[key]["name"] %>
+              </a>
+            </p>
           <% } %>
           <% if (data[key]["relation"] == 1) { %>
             <p class="item__info__relation">не замужем</p>
@@ -34,15 +34,25 @@
             <p class="item__info__relation">помолвлена</p>
           <% } else if (data[key]["relation"] == 4) { %>
             <p class="item__info__relation">замужем</p>
+          <% } else if (data[key]["relation"] == 6) { %>
+            <p class="item__info__relation">в активном поиске</p>
+          <% } else if (data[key]["relation"] == 7) { %>
+            <p class="item__info__relation">влюблена</p>
           <% } %>
+          <div class="item__info__wall">
+            <% for (var i = 0; i < data[key]["posts"].length; i++) { %>
+              <a class="item__info__wall__item" href="<%= data[key]["posts"][i] %>" onclick="nw(this.href, 960, 1600); return false;">стена</a>
+            <% } %>
+          </div>
           <p class="item__info__groups">
             <span class="item__info__groups__count">
               <%= data[key]["groupsCount"] %> подписок
             </span>
-            <span class="item__info__groups__count count__shit">
-              <strong>Плохие подписки:</strong>
-              <%= data[key]["groupsShitCount"] %>
-            </span>
+            <% if (data[key]["groupsShit"].length) { %>
+              <span class="item__info__groups__count count__shit">
+                <%= data[key]["groupsShit"] %>
+              </span>
+            <% } %>
           </p>
           <p class="item__send__message">
             <a class="item__send__message__link" href="<%= data[key]["sendMessageURL"] %>" onclick="nw(this.href, 1); return false;">
