@@ -25,18 +25,18 @@ a {
   .item__photo__image {
     width: 100vh; }
   .item__info {
-    opacity: 0;
-    transition: all .45s;
     width: 100%;
     height: 99%;
     position: absolute;
     z-index: 9999;
+    padding: 10px;
     top: 0;
     bottom: 0;
+    opacity: 0;
+    font-size: 16px;
+    transition: all .45s;
     box-sizing: border-box;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    font-size: 16px; }
+    background: rgba(0, 0, 0, 0.8); }
     .item__info__id {
       color: #fff; }
       .item__info__id:after {
@@ -112,7 +112,3 @@ a {
 @media (min-width: 1800px) {
   .container {
     column-count: 6; } }
-
-@media (min-width: 2500px) {
-  .container {
-    column-count: 8; } }

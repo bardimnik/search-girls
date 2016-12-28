@@ -69,7 +69,7 @@ function makeThousandGirls(offset) {
           }
         });
 
-        var msg = encodeURIComponent("Привет, " + firstName + ".");
+        var msg = encodeURIComponent("Привет, " + firstName + ". Не против познакомиться?");
         var sendMessageURL = "https://api.vk.com/method/messages.send?user_id=" + id + "&message=" + msg + "&access_token=" + token + "&v=5.60";
 
         girl[fullName] = new Object();
