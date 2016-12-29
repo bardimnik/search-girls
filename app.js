@@ -97,11 +97,9 @@ app.get('/', function(req, res) {
   });  
 });
 
-var count = countMembers(0, 50000);
-
 console.time("Полный парсинг участников");
 
-for (var i = 0; i < 2000; i += 1000) {
+for (var i = 0, count = countMembers(0, 50000); i < count; i += 1000) {
   console.time("1000 загрузили.");
 
   makeThousandGirls(i);
