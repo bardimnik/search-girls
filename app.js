@@ -25,12 +25,10 @@ function makeThousandGirls(offset) {
   var body = JSON.parse(res.getBody());
 
   try {
-    var allID = body.response.items;
+    var profiles = body.response.items;
 
-    allID.forEach(function(profile) {
-      var firstName = profile.first_name;
-      var lastName = profile.last_name;
-      var fullName = firstName + " " + lastName;
+    profiles.forEach(function(profile) {
+      var name = profile.first_name + " " + profile.last_name;
 
       var id = profile.id;
       var sex = profile.sex;
@@ -72,16 +70,16 @@ function makeThousandGirls(offset) {
         var msg = encodeURIComponent("Привет, " + firstName + ". Не против познакомиться?");
         var sendMessageURL = "https://api.vk.com/method/messages.send?user_id=" + id + "&message=" + msg + "&access_token=" + token + "&v=5.60";
 
-        girl[fullName] = new Object();
-        girl[fullName]["name"] = fullName;
-        girl[fullName]["id"] = id;
-        girl[fullName]["photo"] = photo;
-        girl[fullName]["relation"] = relation;
-        girl[fullName]["online"] = online;
-        girl[fullName]["sendMessageURL"] = sendMessageURL;
-        girl[fullName]["groupsCount"] = groupsCount;
-        girl[fullName]["groupsShitCount"] = groupsShitCount;
-        girl[fullName]["groupsShitList"] = groupsShitList;
+        girl[name] = new Object();
+        girl[name]["name"] = name;
+        girl[name]["id"] = id;
+        girl[name]["photo"] = photo;
+        girl[name]["relation"] = relation;
+        girl[name]["online"] = online;
+        girl[name]["sendMessageURL"] = sendMessageURL;
+        girl[name]["groupsCount"] = groupsCount;
+        girl[name]["groupsShitCount"] = groupsShitCount;
+        girl[name]["groupsShitList"] = groupsShitList;
       }
     });
   } catch (e) {
