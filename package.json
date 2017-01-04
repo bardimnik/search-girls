@@ -1,6 +1,6 @@
 {
   "name": "searchgirls",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "Check groups and search girls.",
   "main": "app.js",
   "dependencies": {
