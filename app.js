@@ -9,7 +9,7 @@ var girl = new Object();
 var token = "token";
 var group = "pravda.show";
 
-function getCountMembers(group, offset, max) {
+var getCountMembers = (group, offset, max) => {
   var res = request("GET", "https://api.vk.com/method/groups.getMembers?group_id=" + group + "&offset=" + offset + "&v=5.60");
   var body = JSON.parse(res.getBody());
 
@@ -18,7 +18,7 @@ function getCountMembers(group, offset, max) {
   return count;
 }
 
-function makeThousandGirls(group, offset) {
+var makeThousandGirls = (group, offset) => {
   var options = {
     uri: "https://api.vk.com/method/groups.getMembers?group_id="
     + group + "&offset=" + offset
@@ -27,10 +27,10 @@ function makeThousandGirls(group, offset) {
   };
 
   rp(options)
-    .then(body => {
+    .then((body) => {
       var profiles = body.response.items;
 
-      profiles.forEach(function(profile) {
+      profiles.forEach((profile) => {
         var firstName = profile.first_name;
         var lastName = profile.last_name;
         var fullName = firstName + " " + lastName;
@@ -68,7 +68,7 @@ function makeThousandGirls(group, offset) {
           var groupsShitList = "";
           var groupsShitCount = 0;
 
-          groupsAll.forEach(function(group) {
+          groupsAll.forEach((group) => {
             if (group.type == "page") {
               for (blackGroup in listOfShitGroups) {
                 if (group.name.match(listOfShitGroups[blackGroup])) {
@@ -130,7 +130,7 @@ server
     (result) => {
       app.use(express.static(__dirname + "/static"));
       app.set("view engine", "ejs");
-      app.get('/', function(req, res) {
+      app.get('/', (req, res) => {
         res.render("pages/index", {
           data: girl
         });  
