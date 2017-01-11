@@ -1,22 +1,15 @@
 var express = require("express");
 var request = require("sync-request");
 var rp = require("request-promise");
+
 var listOfShitGroups = require("./modules/blackgroups");
+var getCountMembers = require("./modules/getCountMembers")(request);
 
 var app = express();
 
 var girl = new Object();
 var token = "token";
 var group = "pravda.show";
-
-var getCountMembers = (group, offset, max) => {
-  var res = request("GET", "https://api.vk.com/method/groups.getMembers?group_id=" + group + "&offset=" + offset + "&v=5.60");
-  var body = JSON.parse(res.getBody());
-
-  var count = (body.response.count > max) ? max : body.response.count;
-
-  return count;
-}
 
 var makeThousandGirls = (group, offset) => {
   var options = {
@@ -110,7 +103,7 @@ var makeThousandGirls = (group, offset) => {
 };
 
 var server = new Promise((resolve, reject) => {
-  var count = getCountMembers(group, 0, 150000);
+  var count = getCountMembers.find(group, 0, 150000);
 
   for (var i = 0; i <= count; i += 1000) {
     makeThousandGirls(group, i);
