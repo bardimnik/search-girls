@@ -119,21 +119,19 @@ var server = new Promise((resolve, reject) => {
 });
 
 server
-  .then(
-    (result) => {
-      app.use(express.static(__dirname + "/static"));
-      app.set("view engine", "ejs");
-      app.get('/', (req, res) => {
-        res.render("pages/index", {
-          data: girl
-        });  
-      });
+  .then((result) => {
+    app.use(express.static(__dirname + "/static"));
+    app.set("view engine", "ejs");
+    app.get('/', (req, res) => {
+      res.render("pages/index", {
+        data: girl
+      });  
+    });
 
-      app.listen(1488);
+    app.listen(1488);
 
-      console.log("http://localhost:1488");
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+    console.log("http://localhost:1488");
+  })
+  .catch((error) => {
+      onsole.log(error);
+  });
