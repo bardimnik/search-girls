@@ -43,7 +43,7 @@ var makeThousandGirls = (group, offset) => {
         var relation = profile.relation;
         var message = profile.can_write_private_message;
 
-        if (sex == 1 && city == 2 & message) {
+        if (sex == 1 && city == 2 && message) {
           /*
 
           *******
@@ -76,7 +76,7 @@ var makeThousandGirls = (group, offset) => {
 
           */
 
-          var msg = encodeURIComponent("Привет, " + firstName + ".");
+          var msg = encodeURIComponent(`Привет, ${firstName}.`);
           var sendMessageURL = "https://api.vk.com/method/messages.send?user_id=" + id + "&message=" + msg + "&access_token=" + token + "&v=5.60";
 
           girl[fullName] = new Object();
