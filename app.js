@@ -9,9 +9,9 @@ var getCountMembers = require("./modules/getCountMembers")(request);
 var parserGroup = require("./modules/parserGroup")(rp, girl);
 var server = require("./modules/server")(express, parserGroup, getCountMembers);
 
-var token = "token";
+var token = "TOKEN";
 var group = "pravda.show";
 
 parserGroup.start(group, 1000, token);
 
-server.start(group, girl);
+server.start(group, girl, 10000);
