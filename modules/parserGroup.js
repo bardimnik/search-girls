@@ -1,7 +1,7 @@
-module.exports = (rp, girl) => {
+module.exports = (rp, girl, token) => {
   var module = {};
 
-  module.start = (group, offset, token) => {
+  module.start = (group, offset) => {
     var options = {
       uri: "https://api.vk.com/method/groups.getMembers?group_id=" + group + "&offset=" + offset + "&sort=id_desc&fields=sex,can_write_private_message,photo_max_orig,online,relation,city&v=5.60",
       json: true
@@ -65,7 +65,7 @@ module.exports = (rp, girl) => {
             */
 
             var msg = `Привет, ${firstName}.`;
-            var sendMessageURL = "https://api.vk.com/method/messages.send?user_id=" + id + "&message=" + encodeURIComponent(msg) + "&access_token=" + token + "&v=5.60";
+            var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
 
             girl[fullName] = new Object();
             girl[fullName]["name"] = fullName;

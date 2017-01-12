@@ -1,17 +1,16 @@
-var express = require("express");
-var request = require("sync-request");
-var rp = require("request-promise");
+const express = require("express");
+const request = require("sync-request");
+const rp = require("request-promise");
 
-var girl = new Object();
+const girl = new Object();
+const group = "pravda.show";
+const token = "TOKEN";
 
-var listOfShitGroups = require("./modules/blackgroups");
-var getCountMembers = require("./modules/getCountMembers")(request);
-var parserGroup = require("./modules/parserGroup")(rp, girl);
-var server = require("./modules/server")(express, parserGroup, getCountMembers);
+const listOfShitGroups = require("./modules/blackgroups");
+const getCountMembers = require("./modules/getCountMembers")(request);
+const parserGroup = require("./modules/parserGroup")(rp, girl, token);
+const server = require("./modules/server")(express, parserGroup, getCountMembers);
 
-var token = "TOKEN";
-var group = "pravda.show";
+parserGroup.start(group, 1000);
 
-parserGroup.start(group, 1000, token);
-
-server.start(girl, group, 1000, 5000);
+server.start(girl, group, 10000, 50000);

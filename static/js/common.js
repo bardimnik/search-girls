@@ -1,4 +1,5 @@
 var container = document.querySelector(".container");
+var offlineItems = document.querySelectorAll(".girls__item--offline");
 
 var girlsItem = document.querySelectorAll(".girls__item");
 var girlsPhoto = document.querySelectorAll(".girls__photo");
@@ -6,6 +7,7 @@ var girlsPhoto = document.querySelectorAll(".girls__photo");
 var viewWidth = document.querySelector(".view__width");
 var viewColumnFour = document.querySelector(".view__column--four");
 var viewColumnEight = document.querySelector(".view__column--eight");
+var viewOnline = document.querySelector(".view__online");
 
 var changeColumns = (checkbox, columns, anotherColumns) => {
   if (checkbox.checked) {
@@ -41,7 +43,7 @@ var changeColumns = (checkbox, columns, anotherColumns) => {
 };
 
 viewWidth.addEventListener("click", () => {
-  if (viewWidth.checked) {
+  if (!viewWidth.checked) {
     Object.assign(container.style, {
       maxWidth: "1170px",
       width: "100%"
@@ -75,6 +77,18 @@ viewColumnEight.addEventListener("click", () => {
   changeColumns(viewColumnEight, 8, 2);
 });
 
+viewOnline.addEventListener("click", () => {
+  if (viewOnline.checked) {
+    for (var block in offlineItems) {
+      offlineItems[block].style.display = "none";
+    }
+  } else {
+    for (var block in offlineItems) {
+      offlineItems[block].style.display = "block";
+    }
+  }
+});
+
 var nw = e => {
   var h = 500;
   var w = 500;
@@ -83,5 +97,5 @@ var nw = e => {
 
   setTimeout(function() {
     wndw.close();
-  }, 500);
+  }, 2500);
 }

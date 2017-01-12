@@ -9,19 +9,19 @@
   </head>
   <body>
     <div class="view">
-      <input class="view__width" type="checkbox">
-      <label for="view__width" class="view__label">max-width: 1170px</label>
-
-      <input class="view__column view__column--four" type="checkbox">
-      <label for="view__column view__column--four" class="view__label">4 columns</label>
-
-      <input class="view__column view__column--eight" type="checkbox">
-      <label for="view__column view__column--eight" class="view__label">8 columns</label>
+      <input class="view__width" type="checkbox" checked>во весь экран
+      <input class="view__column view__column--four" type="checkbox">4 колонки
+      <input class="view__column view__column--eight" type="checkbox">8 колонок
+      <input class="view__online" type="checkbox">только online
     </div>
     <div class="container">
       <div class="girls">
         <% for (var key in data) { %>
-          <div class="girls__item">
+          <% if (data[key]["online"]) { %>
+            <div class="girls__item girls__item--online">
+          <% } else { %>
+            <div class="girls__item girls__item--offline">
+          <% } %> 
             <img class="girls__photo" src="<%= data[key]["photo"] %>">
             <div class="girls__info">
               <% if (data[key]["online"]) { %>
