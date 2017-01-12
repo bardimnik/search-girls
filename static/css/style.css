@@ -2,87 +2,87 @@
   margin: 0;
   padding: 0; }
 
+body {
+  font-family: 'PT Sans', Arial; }
+
 img {
   max-width: 100%;
   height: auto; }
-
-body {
-  font-family: "PT Sans", Arial; }
 
 a {
   text-decoration: none; }
   a:hover {
     text-decoration: underline; }
 
+.view {
+  width: 100%;
+  margin: 0 auto;
+  z-index: 20;
+  position: fixed;
+  text-align: center;
+  padding: 10px 0;
+  background: #fff; }
+
 .container {
   width: 100%;
+  padding: 40px 0 0 0;
+  margin: 0 auto;
   column-gap: 5px; }
 
-.item {
-  display: inline-block;
+.girls__item {
   position: relative;
+  display: inline-block;
   width: auto; }
-  .item__photo__image {
-    width: 100vh; }
-  .item__info {
-    width: 100%;
-    height: 99%;
-    position: absolute;
-    z-index: 9999;
-    padding: 10px;
-    top: 0;
-    bottom: 0;
-    opacity: 0;
-    font-size: 16px;
-    transition: all .45s;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.8); }
-    .item__info__id {
-      color: #fff; }
-      .item__info__id:after {
-        display: inline-block;
-        content: "";
-        border-radius: 9999px;
-        width: 10px;
-        height: 10px; }
-    .item__info .status__online:after {
-      background: #27ae60; }
-    .item__info .status__offline:after {
-      background: #c0392b; }
-    .item__info__relation {
-      color: #e74c3c; }
-    .item__info__status {
-      border-radius: 9999px;
-      display: inline-block;
-      width: 10px;
-      height: 10px; }
-    .item__info__groups {
-      color: #fff;
-      position: absolute;
-      bottom: 50px; }
-      .item__info__groups__list {
-        display: none; }
-      .item__info__groups__count {
-        display: block; }
-    .item__info a {
-      color: #fff;
-      text-decoration: none; }
-      .item__info a:hover {
-        text-decoration: underline; }
-  .item__send__message {
-    display: block;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: #fff;
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center; }
-    .item__send__message__link {
-      color: #000 !important; }
-  .item:hover .item__info {
+
+.girls__photo {
+  width: 100vh;
+  height: inherit; }
+
+.girls__info {
+  font-size: 16px;
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  transition: all .45s;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8); }
+  .girls__info:hover {
     opacity: 1; }
+
+.girls__name:after {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  content: '';
+  border-radius: 9999px; }
+
+.girls__name--online:after {
+  background: #27ae60; }
+
+.girls__name--offline:after {
+  background: #c0392b; }
+
+.girls__link {
+  color: #fff; }
+
+.girls__relation {
+  color: #e74c3c; }
+
+.girls__send-message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: #000;
+  background: #fff; }
 
 .footer {
   margin: 50px 0; }
