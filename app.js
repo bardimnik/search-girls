@@ -4,7 +4,7 @@ const rp = require("request-promise");
 
 const girl = new Object();
 const group = "wh_red";
-const token = "e5f3149e9a124ebab5dc17bce16e5e888893760686f19b58821a28af5d7167ab4b2429caaaca26791af0d";
+const token = "TOKEN";
 
 const listOfShitGroups = require("./modules/blackgroups");
 const getCountMembers = require("./modules/getCountMembers")(request);
