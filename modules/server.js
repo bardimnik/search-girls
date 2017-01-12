@@ -1,11 +1,11 @@
 module.exports = (express, parserGroup, getCountMembers) => {
   var module = {};
 
-  module.start = (group, girl, count) => {
+  module.start = (girl, group, offset, count) => {
     var app = express();
 
     var server = new Promise((resolve, reject) => {
-      for (var i = 0, c = getCountMembers.find(group, 0, count); i <= c; i += 1000) {
+      for (var i = 0, c = getCountMembers.find(group, offset, count); i <= c; i += 1000) {
         parserGroup.start(group, i);
 
         if (i == c) {

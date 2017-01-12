@@ -14,4 +14,4 @@ var group = "pravda.show";
 
 parserGroup.start(group, 1000, token);
 
-server.start(group, girl, 10000);
+server.start(girl, group, 1000, 5000);
