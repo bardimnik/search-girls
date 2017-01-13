@@ -1,21 +1,15 @@
 module.exports = (express, parserGroup, getCountMembers) => {
   var module = {};
 
-  module.start = (girl, group, offset, max) => {
+  module.start = (girl, group, offset, count) => {
     var app = express();
-    var max;
-
-    if (max < 1000) {
-      max = 1000;
-    } else if (!max) {
-      max = 999999; 
-    }
+    var count = Math.round(count / 1000) * 1000;
 
     var server = new Promise((resolve, reject) => {
-      for (var i = 0, c = getCountMembers.find(group, offset, max); i <= c; i += 1000) {
+      for (var i = 0; i <= count; i += 1000) {
         parserGroup.start(group, i);
 
-        if (i == c) {
+        if (i == count) {
           resolve(i);
 
           return;
