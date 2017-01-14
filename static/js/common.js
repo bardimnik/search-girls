@@ -10,7 +10,7 @@ var viewColumnEight = document.querySelector('.view__column--eight');
 var viewOnline = document.querySelector('.view__online');
 
 var changeColumns = (checkbox, columns, anotherColumns) => {
-  if (checkbox.checked) {
+  if (checkbox.checked) {    
     // Снимаем один чекбокс
 
     if (checkbox == viewColumnFour) {
@@ -27,18 +27,18 @@ var changeColumns = (checkbox, columns, anotherColumns) => {
       columnGap: '10px'
     });
 
-    for (var block in girlsItem) {
-      girlsItem[block].style.width = `${itemWidth}px`;
-    }
+    girlsItem.forEach(block => {
+      block.style.width = `${itemWidth}px`;
+    });
   } else {
     Object.assign(container.style, {
       columnCount: 6,
       columnGap: '5px'
     });
 
-    for (var block in girlsItem) {
-      girlsItem[block].style.width = 'auto';
-    }
+    girlsItem.forEach(block => {
+      block.style.width = 'auto';
+    });
   }
 };
 
@@ -63,9 +63,9 @@ viewWidth.addEventListener('click', () => {
       columnGap: '5px'
     });
 
-    for (var block in girlsItem) {
-      girlsItem[block].style.width = 'auto';
-    }
+    girlsItem.forEach(block => {
+      block.style.width = 'auto';
+    });
   }
 });
 
@@ -79,13 +79,13 @@ viewColumnEight.addEventListener('click', () => {
 
 viewOnline.addEventListener('click', () => {
   if (viewOnline.checked) {
-    for (var block in offlineItems) {
-      offlineItems[block].style.display = 'none';
-    }
+    offlineItems.forEach(block => {
+      block.style.display = 'none';
+    });
   } else {
-    for (var block in offlineItems) {
-      offlineItems[block].style.display = 'block';
-    }
+    offlineItems.forEach(block => {
+      block.style.display = 'block';
+    });
   }
 });
 
