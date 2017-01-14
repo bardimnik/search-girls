@@ -3,7 +3,7 @@ module.exports = (rp, girl, token) => {
 
   module.start = (group, offset) => {
     var options = {
-      uri: 'https://api.vk.com/method/groups.getMembers?group_id=' + group + '&offset=' + offset + '&sort=id_desc&fields=sex,can_write_private_message,photo_max_orig,online,relation,city&v=5.60',
+      uri: `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=${offset}&sort=id_desc&fields=sex,can_write_private_message,photo_max_orig,online,relation,city&v=5.60`,
       json: true
     };
 
@@ -23,7 +23,7 @@ module.exports = (rp, girl, token) => {
             var city = profile.city.id;
             var relation = profile.relation;
           } catch (e) {
-            // console.log('City or relation not found...');
+            // console.log('Город или семейное положение не найдено.');
           }
 
           var photo = profile.photo_max_orig;
@@ -67,7 +67,7 @@ module.exports = (rp, girl, token) => {
             var msg = 'Привет.';
             var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
 
-            girl[fullName] = new Object();
+            girl[fullName] = {};
             girl[fullName]['name'] = fullName;
             girl[fullName]['id'] = id;
             girl[fullName]['photo'] = photo;
