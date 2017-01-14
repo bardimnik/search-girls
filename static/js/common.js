@@ -10,7 +10,7 @@ var viewColumnEight = document.querySelector('.view__column--eight');
 var viewOnline = document.querySelector('.view__online');
 
 var changeColumns = (checkbox, columns, anotherColumns) => {
-  if (checkbox.checked) {    
+  if (checkbox.checked) {
     // Снимаем один чекбокс
 
     if (checkbox == viewColumnFour) {
