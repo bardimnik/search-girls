@@ -16,22 +16,22 @@ module.exports = (express, parserGroup, getCountMembers) => {
         }
       }
 
-      reject("Error");
+      reject('Ошибка при выполнении парсинга.');
     });
 
     server
       .then(result => {
-        app.use(express.static("./static"));
-        app.set("view engine", "ejs");
+        app.use(express.static('./static'));
+        app.set('view engine', 'ejs');
         app.get('/', (req, res) => {
-          res.render("pages/index", {
+          res.render('pages/index', {
             data: girl
           });
         });
 
         app.listen(1337);
 
-        console.log("http://localhost:1337");
+        console.log('http://localhost:1337');
       })
       .catch(err => {
         console.log(err);
