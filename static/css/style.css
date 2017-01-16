@@ -14,6 +14,13 @@ a {
   a:hover {
     text-decoration: underline; }
 
+::-webkit-scrollbar {
+  width: 7px; }
+  ::-webkit-scrollbar-track {
+    background: #eee; }
+  ::-webkit-scrollbar-thumb {
+    background: #aeaeae; }
+
 .view {
   position: fixed;
   z-index: 20;
@@ -85,6 +92,21 @@ a {
   text-align: center;
   color: #000;
   background: #fff; }
+
+.girls__socials {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 6.5em; }
+  .girls__socials::-webkit-scrollbar {
+    width: 4px; }
+
+.girls__social {
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 0; }
+  .girls__social:first-child {
+    margin: 10px 0 0 0; }
 
 .footer {
   margin: 50px 0; }

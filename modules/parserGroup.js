@@ -3,7 +3,7 @@ module.exports = (rp, girl, token) => {
 
   module.start = (group, offset) => {
     var options = {
-      uri: `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=${offset}&sort=id_desc&fields=sex,can_write_private_message,photo_max_orig,online,relation,city&v=5.60`,
+      uri: `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=${offset}&sort=id_desc&fields=sex,can_write_private_message,photo_max_orig,online,connections,relation,city&v=5.60`,
       json: true
     };
 
@@ -12,9 +12,7 @@ module.exports = (rp, girl, token) => {
         var profiles = body.response.items;
 
         profiles.forEach(profile => {
-          var firstName = profile.first_name;
-          var lastName = profile.last_name;
-          var fullName = `${firstName} ${lastName}`;
+          var name = `${profile.first_name} ${profile.last_name}`;
 
           var id = profile.id;
           var sex = profile.sex;
@@ -22,6 +20,9 @@ module.exports = (rp, girl, token) => {
           try {
             var city = profile.city.id;
             var relation = profile.relation;
+            var instagram = profile.instagram;
+            var twitter = profile.twitter;
+            var skype = profile.skype;
           } catch (e) {
             // console.log('Город или семейное положение не найдено.');
           }
@@ -35,13 +36,17 @@ module.exports = (rp, girl, token) => {
             var msg = 'Привет.';
             var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
 
-            girl[fullName] = {};
-            girl[fullName]['name'] = fullName;
-            girl[fullName]['id'] = id;
-            girl[fullName]['photo'] = photo;
-            girl[fullName]['relation'] = relation;
-            girl[fullName]['online'] = online;
-            girl[fullName]['sendMessageURL'] = sendMessageURL;
+            girl[name] = {};
+            girl[name]['name'] = name;
+            girl[name]['id'] = id;
+            girl[name]['photo'] = photo;
+            girl[name]['relation'] = relation;
+            girl[name]['online'] = online;
+            girl[name]['sendMessageURL'] = sendMessageURL;
+            girl[name]['social'] = {};
+            girl[name]['social']['instagram'] = instagram;
+            girl[name]['social']['twitter'] = twitter;
+            girl[name]['social']['skype'] = skype;
           }
         });
       })

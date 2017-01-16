@@ -20,6 +20,18 @@ a {
   }
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+
+  &-track {
+    background: #eee;
+  }
+
+  &-thumb {
+    background: darken(#eee, 25%);
+  }
+}
+
 .view {
   position: fixed;
   z-index: 20;
@@ -128,6 +140,29 @@ a {
 
     color: #000;
     background: #fff;
+  }
+
+  &__socials {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    height: 6.5em;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+  }
+
+  &__social {
+    color: #fff;
+    font-weight: 700;
+
+    padding: 5px 0;
+
+    &:first-child {
+      margin: 10px 0 0 0;
+    }
   }
 }
 
