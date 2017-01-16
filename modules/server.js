@@ -3,6 +3,7 @@ module.exports = (express, parserGroup, getCountMembers) => {
 
   module.start = (girl, group, offset, count) => {
     var app = express();
+    var port = process.env.PORT || 3000;
     var count = Math.round(count / 1000) * 1000;
 
     var server = new Promise((resolve, reject) => {
@@ -29,9 +30,9 @@ module.exports = (express, parserGroup, getCountMembers) => {
           });
         });
 
-        app.listen(1337);
+        app.listen(port);
 
-        console.log('http://localhost:1337');
+        console.log(`http://localhost:${port}`);
       })
       .catch(err => {
         console.log(err);
