@@ -58,7 +58,12 @@
                       </a>
                     </p>
                   <% } else if (data[key]["social"]["twitter"]) { %>
-                    <p class="girls__social girls__social--twitter">twitter: @<%= data[key]["social"]["twitter"] %></p>
+                    <p class="girls__social girls__social--twitter">
+                      twitter:
+                      <a href="https://twitter.com/<%= data[key]["social"]["twitter"] %>">
+                        @<%= data[key]["social"]["twitter"] %>
+                      </a>
+                    </p>
                   <% } else if (data[key]["social"]["skype"]) { %>
                     <p class="girls__social girls__social--skype">skype: @<%= data[key]["social"]["skype"] %></p>
                   <% } %>
