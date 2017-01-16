@@ -48,10 +48,15 @@
               <% } else if (data[key]["relation"] == 7) { %>
                 <p class="girls__relation">влюблена</p>
               <% } %>
-              <% if (data[key]["social"].length) { %>
+              <% if (Object.keys(data[key]["social"]).length) { %>
                 <div class="girls__socials">
                   <% if (data[key]["social"]["instagram"]) { %>
-                    <p class="girls__social girls__social--instagram">instagram: @<%= data[key]["social"]["instagram"] %></p>
+                    <p class="girls__social girls__social--instagram">
+                      instagram:
+                      <a href="https://instagram.com/<%= data[key]["social"]["instagram"] %>">
+                        @<%= data[key]["social"]["instagram"] %>                      
+                      </a>
+                    </p>
                   <% } else if (data[key]["social"]["twitter"]) { %>
                     <p class="girls__social girls__social--twitter">twitter: @<%= data[key]["social"]["twitter"] %></p>
                   <% } else if (data[key]["social"]["skype"]) { %>

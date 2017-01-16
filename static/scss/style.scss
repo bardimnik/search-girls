@@ -160,6 +160,19 @@ a {
 
     padding: 5px 0;
 
+    & a {
+      font-weight: 400;
+
+      text-decoration: none;
+
+      color: #3498db;
+
+      &:hover {
+        color: darken(#3498db, 5%);
+        border-bottom: 1px solid darken(#3498db, 5%);
+      }
+    }
+
     &:first-child {
       margin: 10px 0 0 0;
     }
