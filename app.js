@@ -11,6 +11,6 @@ const getCountMembers = require('./modules/getCountMembers')(request);
 const parserGroup = require('./modules/parserGroup')(rp, girl, token);
 const server = require('./modules/server')(express, parserGroup, getCountMembers);
 
-const count = getCountMembers.find(group, 0, 5000);
+const count = getCountMembers(group, 0, 5000);
 
-server.start(girl, group, 0, count);
+server(girl, group, 0, count);

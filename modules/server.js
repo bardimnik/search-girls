@@ -1,14 +1,12 @@
-module.exports = (express, parserGroup, getCountMembers) => {
-  var module = {};
-
-  module.start = (girl, group, offset, count) => {
+var server = (express, parserGroup, getCountMembers) => {
+  return (girl, group, offset, count) => {
     var app = express();
     var port = process.env.PORT || 3000;
     var count = Math.round(count / 1000) * 1000;
 
     var server = new Promise((resolve, reject) => {
       for (var i = 0; i <= count; i += 1000) {
-        parserGroup.start(group, i);
+        parserGroup(group, i);
 
         if (i == count) {
           resolve(i);
@@ -32,12 +30,12 @@ module.exports = (express, parserGroup, getCountMembers) => {
 
         app.listen(port);
 
-        console.log(`http://localhost:${port}`);
+        console.log(`Сервер запущен --> http://localhost:${port}`);
       })
       .catch(err => {
         console.log(err);
       });
-  };
-
-  return module;
+  }
 };
+
+module.exports = server;

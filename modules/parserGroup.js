@@ -1,7 +1,5 @@
-module.exports = (rp, girl, token) => {
-  var module = {};
-
-  module.start = (group, offset) => {
+var parserGroup = (rp, girl, token) => {
+  return (group, offset) => {
     var isEmpty = obj => {
       for (var prop in obj) {
         if (obj.hasOwnProperty(prop)) {
@@ -60,11 +58,9 @@ module.exports = (rp, girl, token) => {
             girl[name]['relation'] = relation;
             girl[name]['online'] = online;
             girl[name]['sendMessageURL'] = sendMessageURL;
-            
+
             if (!isEmpty(social)) {
               girl[name]['social'] = social;
-
-              console.log(social);
             }
           }
         });
@@ -72,7 +68,7 @@ module.exports = (rp, girl, token) => {
       .catch(err => {
         console.log(err);
       });
-  };
-
-  return module;
+  }
 };
+
+module.exports = parserGroup;
