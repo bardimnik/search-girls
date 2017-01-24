@@ -2,8 +2,18 @@ module.exports = (rp, girl, token) => {
   var module = {};
 
   module.start = (group, offset) => {
+    var isEmpty = obj => {
+      for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
     var options = {
-      uri: `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=${offset}&sort=id_desc&fields=sex,can_write_private_message,photo_max_orig,online,connections,relation,city&v=5.60`,
+      uri: `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=${offset}&sort=id_desc&fields=status,sex,can_write_private_message,photo_max_orig,online,connections,relation,city&v=5.60`,
       json: true
     };
 
@@ -15,6 +25,7 @@ module.exports = (rp, girl, token) => {
           var name = `${profile.first_name} ${profile.last_name}`;
 
           var id = profile.id;
+          var status = profile.status;
           var sex = profile.sex;
 
           try {
@@ -24,7 +35,7 @@ module.exports = (rp, girl, token) => {
             var twitter = profile.twitter;
             var skype = profile.skype;
           } catch (e) {
-            // console.log('Город или семейное положение не найдено.');
+            // console.log('Некоторые данные отсутствуют.');
           }
 
           var photo = profile.photo_max_orig;
@@ -32,21 +43,29 @@ module.exports = (rp, girl, token) => {
           var relation = profile.relation;
           var message = profile.can_write_private_message;
 
+          var social = {};
+              social.instagram = instagram;
+              social.twitter = twitter;
+              social.skype = skype;
+
           if (sex == 1 && city == 2 && message) {
-            var msg = 'Привет.';
+            var msg = 'А что, если Бог — он как пустота в пельмешке, между мясом и тестом? Как только начнёшь ее искать, исчезает сама вероятность ее существования?';
             var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
 
             girl[name] = {};
             girl[name]['name'] = name;
             girl[name]['id'] = id;
+            girl[name]['status'] = status;
             girl[name]['photo'] = photo;
             girl[name]['relation'] = relation;
             girl[name]['online'] = online;
             girl[name]['sendMessageURL'] = sendMessageURL;
-            girl[name]['social'] = {};
-            girl[name]['social']['instagram'] = instagram;
-            girl[name]['social']['twitter'] = twitter;
-            girl[name]['social']['skype'] = skype;
+            
+            if (!isEmpty(social)) {
+              girl[name]['social'] = social;
+
+              console.log(social);
+            }
           }
         });
       })

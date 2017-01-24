@@ -95,6 +95,12 @@ a {
     }
   }
 
+  &__status {
+    padding: 10px 0 5px 0;
+    color: #fff;
+    font-style: italic;
+  }
+
   &__name {
 
     &:after {

@@ -48,27 +48,32 @@
               <% } else if (data[key]["relation"] == 7) { %>
                 <p class="girls__relation">влюблена</p>
               <% } %>
-              <% if (Object.keys(data[key]["social"]).length) { %>
-                <div class="girls__socials">
-                  <% if (data[key]["social"]["instagram"]) { %>
-                    <p class="girls__social girls__social--instagram">
-                      instagram:
-                      <a href="https://instagram.com/<%= data[key]["social"]["instagram"] %>">
-                        @<%= data[key]["social"]["instagram"] %>                      
-                      </a>
-                    </p>
-                  <% } else if (data[key]["social"]["twitter"]) { %>
-                    <p class="girls__social girls__social--twitter">
-                      twitter:
-                      <a href="https://twitter.com/<%= data[key]["social"]["twitter"] %>">
-                        @<%= data[key]["social"]["twitter"] %>
-                      </a>
-                    </p>
-                  <% } else if (data[key]["social"]["skype"]) { %>
-                    <p class="girls__social girls__social--skype">skype: @<%= data[key]["social"]["skype"] %></p>
-                  <% } %>
-                </div>
+              <% if (data[key]["status"].length) { %>
+                <p class="girls__status">
+                  <%= data[key]["status"] %>
+                </p>
               <% } %>
+              <div class="girls__socials">
+                <% if (data[key]["social"]["instagram"]) { %>
+                  <p class="girls__social girls__social--instagram">
+                    instagram:
+                    <a href="https://instagram.com/<%= data[key]["social"]["instagram"] %>">
+                      @<%= data[key]["social"]["instagram"] %>                      
+                    </a>
+                  </p>
+                <% } else if (data[key]["social"]["twitter"]) { %>
+                  <p class="girls__social girls__social--twitter">
+                    twitter:
+                    <a href="https://twitter.com/<%= data[key]["social"]["twitter"] %>">
+                      @<%= data[key]["social"]["twitter"] %>
+                    </a>
+                  </p>
+                <% } else if (data[key]["social"]["skype"]) { %>                  
+                  <p class="girls__social girls__social--skype">
+                    skype: @<%= data[key]["social"]["skype"] %>
+                  </p>
+                <% } %>              
+              </div>
               <a class="girls__send-message" href="<%= data[key]["sendMessageURL"] %>" onclick="nw(this.href, 1); return false;">
                   Написать сообщение
               </a>
