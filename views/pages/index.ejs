@@ -55,12 +55,12 @@
               <% } %>
               <% if (data[key]["groups"]["shit"].length) { %>
                 <div class="girls__groups">
-                  <a href="#" class="girls__show-shit">
+                  <a href="#!" class="girls__show-shit">
                     <% for (var i = 0, l = data[key]["groups"]["shitCount"]; i < l; i++) { %>
                       💩
                     <% } %>
                   </a>
-                  <a href="#" class="girls__close">x</a>
+                  <a href="#!" class="girls__close">x</a>
                   <ol class="girls__list">
                     <% data[key]["groups"]["shit"].forEach(group => { %>
                       <li class="girls__item girls__item--vertical"><%= group %></li>
