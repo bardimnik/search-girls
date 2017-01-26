@@ -1,4 +1,4 @@
-var parserGroup = (rp, girl, token) => {
+var parserGroup = (rp, girl, token, listOfShitGroups) => {
   return (group, offset) => {
     var isEmpty = obj => {
       for (var prop in obj) {
@@ -42,26 +42,57 @@ var parserGroup = (rp, girl, token) => {
           var message = profile.can_write_private_message;
 
           var social = {};
-              social.instagram = instagram;
-              social.twitter = twitter;
-              social.skype = skype;
+          social.instagram = instagram;
+          social.twitter = twitter;
+          social.skype = skype;
 
           if (sex == 1 && city == 2 && message) {
-            var msg = 'А что, если Бог — он как пустота в пельмешке, между мясом и тестом? Как только начнёшь ее искать, исчезает сама вероятность ее существования?';
-            var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
+            var options = {
+              uri: `https://api.vk.com/method/users.getSubscriptions?&user_id=${id}&extended=1&count=200&v=5.60`,
+              json: true
+            };
 
-            girl[name] = {};
-            girl[name]['name'] = name;
-            girl[name]['id'] = id;
-            girl[name]['status'] = status;
-            girl[name]['photo'] = photo;
-            girl[name]['relation'] = relation;
-            girl[name]['online'] = online;
-            girl[name]['sendMessageURL'] = sendMessageURL;
+            rp(options)
+              .then(body => {
+                var items = body.response.items;
+                var groups = {};
+                    groups.list = [];
+                    groups.shit = [];
 
-            if (!isEmpty(social)) {
-              girl[name]['social'] = social;
-            }
+                items.forEach(group => {
+                  if (group.type == 'page') {
+                    // groups.list.push(group.name);
+
+                    for (var shit in listOfShitGroups) {
+                      if (group.name.match(listOfShitGroups[shit])) {
+                        groups.shit.push(group.name);
+                      }
+                    }
+
+                    groups.shitCount = groups.shit.length;
+                  }
+                });          
+
+                var msg = `Здравствуй, май ${profile.first_name}!`;
+                var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
+
+                girl[name] = {};
+                girl[name]['name'] = name;
+                girl[name]['id'] = id;
+                girl[name]['status'] = status;
+                girl[name]['photo'] = photo;
+                girl[name]['relation'] = relation;
+                girl[name]['online'] = online;
+                girl[name]['groups'] = groups;
+                girl[name]['sendMessageURL'] = sendMessageURL;
+
+                if (!isEmpty(social)) {
+                  girl[name]['social'] = social;
+                }
+              })
+              .catch(e => {
+                console.log(e);
+              });
           }
         });
       })

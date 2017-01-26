@@ -66,6 +66,10 @@ a {
     display: inline-block;
 
     width: auto;
+
+    &--vertical {
+      display: block;
+    }
   }
 
   &__photo {
@@ -99,6 +103,75 @@ a {
     padding: 10px 0 5px 0;
     color: #fff;
     font-style: italic;
+  }
+
+  // &__groups {
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   z-index: 40;
+
+  //   width: 100%;
+  //   height: 100%;
+
+  //   color: #fff;
+  //   background: #000;
+
+  //   display: none;
+  // }
+
+  &__show-shit {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+
+    padding: 10px;
+
+    border-top-right-radius: 10px;
+    background: #fff;
+    transition: all .25s;
+
+    &:hover {
+      text-decoration: none;
+
+      padding-bottom: 15px;
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 40;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 98.75%;
+
+    color: #fff;
+    background: #000;
+
+    display: none;
+  }
+
+  &__close {
+    font-weight: 700;
+
+    position: absolute;
+    z-index: 50;
+    top: 20px;
+    right: 20px;
+
+    display: none;
+
+    color: #fff;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &__name {

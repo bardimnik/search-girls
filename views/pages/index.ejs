@@ -53,6 +53,21 @@
                   <%= data[key]["status"] %>
                 </p>
               <% } %>
+              <% if (data[key]["groups"]["shit"].length) { %>
+                <div class="girls__groups">
+                  <a href="#" class="girls__show-shit">
+                    <% for (var i = 0, l = data[key]["groups"]["shitCount"]; i < l; i++) { %>
+                      💩
+                    <% } %>
+                  </a>
+                  <a href="#" class="girls__close">x</a>
+                  <ol class="girls__list">
+                    <% data[key]["groups"]["shit"].forEach(group => { %>
+                      <li class="girls__item girls__item--vertical"><%= group %></li>
+                    <% }); %>
+                  </ol>
+                </div>
+              <% } %>
               <div class="girls__socials">
                 <% if (data[key]["social"]["instagram"]) { %>
                   <p class="girls__social girls__social--instagram">
@@ -88,6 +103,7 @@
       </p>
     </div>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/common.js"></script>
   </body>
 </html>

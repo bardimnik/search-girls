@@ -1,8 +1,10 @@
 var container = document.querySelector('.container');
 var offlineItems = document.querySelectorAll('.girls__item--offline');
-
+var girls = document.querySelector('.girls');
 var girlsItem = document.querySelectorAll('.girls__item');
 var girlsPhoto = document.querySelectorAll('.girls__photo');
+var girlsGroups = document.querySelectorAll('.girls__groups');
+var girlsShowShit = document.querySelectorAll('.girls__show-shit');
 
 var viewWidth = document.querySelector('.view__width');
 var viewColumnFour = document.querySelector('.view__column--four');
@@ -87,6 +89,26 @@ viewOnline.addEventListener('click', () => {
       block.style.display = 'block';
     });
   }
+});
+
+$(girlsGroups).on('click', (event) => {
+  var target = event.target;
+
+  if (target.className != 'girls__show-shit') {
+    return;
+  }
+
+  var item = target.parentNode;
+  var link = item.childNodes[3];
+  var list = item.childNodes[5];
+
+  link.style.display = 'block';
+  list.style.display = 'block';
+
+  $(link).on('click', () => {
+    link.style.display = 'none';
+    list.style.display = 'none';
+  });
 });
 
 var nw = e => {
