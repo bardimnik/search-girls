@@ -8,7 +8,7 @@ const token = 'token';
 
 const listOfShitGroups = require('./modules/blackgroups');
 const getCountMembers = require('./modules/getCountMembers')(request);
-const parserGroup = require('./modules/parserGroup')(rp, girl, token);
+const parserGroup = require('./modules/parserGroup')(rp, girl, token, listOfShitGroups);
 const server = require('./modules/server')(express, parserGroup, getCountMembers);
 
 const count = getCountMembers(group, 0, 5000);
