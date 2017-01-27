@@ -6,7 +6,7 @@ var server = (express, parserGroup, getCountMembers) => {
 
     var server = new Promise((resolve, reject) => {
       for (var i = 0; i <= count; i += 1000) {
-        parserGroup(group, i);
+        parserGroup(group, (offset + i));
 
         if (i == count) {
           resolve(i);

@@ -1,6 +1,6 @@
 var getCountMembers = (request) => {
-  return (group, offset, max) => {
-    var res = request('GET', `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=${offset}&v=5.60`);
+  return (group, max) => {
+    var res = request('GET', `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=0&v=5.60`);
     var body = JSON.parse(res.getBody());
 
     if (body.response.count > max) return max;
