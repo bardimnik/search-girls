@@ -1,4 +1,4 @@
-var parserGroup = (rp, girl, token, listOfShitGroups) => {
+var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
   return (group, offset) => {
     var isEmpty = obj => {
       for (var prop in obj) {
@@ -20,7 +20,19 @@ var parserGroup = (rp, girl, token, listOfShitGroups) => {
         var profiles = body.response.items;
 
         profiles.forEach(profile => {
-          var name = `${profile.first_name} ${profile.last_name}`;
+          var name = profile.first_name;
+          var surname = profile.last_name;
+          var fullname = `${name} ${surname}`;
+          var isNormallyName;
+
+          // Делаем проверку фамилии
+          for (var lastname in shittySurname) {
+            if (surname == shittySurname[lastname]) {
+              isNormallyName = false;
+            } else {
+              isNormallyName = true;
+            }
+          }
 
           var id = profile.id;
           var status = profile.status;
@@ -42,11 +54,11 @@ var parserGroup = (rp, girl, token, listOfShitGroups) => {
           var message = profile.can_write_private_message;
 
           var social = {};
-          social.instagram = instagram;
-          social.twitter = twitter;
-          social.skype = skype;
+              social.instagram = instagram;
+              social.twitter = twitter;
+              social.skype = skype;
 
-          if (sex == 1 && city == 2 && message) {
+          if (sex == 1 && city == 2 && message && isNormallyName) {
             var options = {
               uri: `https://api.vk.com/method/users.getSubscriptions?&user_id=${id}&extended=1&count=200&v=5.60`,
               json: true
@@ -61,33 +73,34 @@ var parserGroup = (rp, girl, token, listOfShitGroups) => {
 
                 items.forEach(group => {
                   if (group.type == 'page') {
-                    // groups.list.push(group.name);
+                    groups.list.push(group.name);
 
-                    for (var shit in listOfShitGroups) {
-                      if (group.name.match(listOfShitGroups[shit])) {
+                    for (var public in listOfShitGroups) {
+                      if (group.name.match(listOfShitGroups[public])) {
                         groups.shit.push(group.name);
                       }
                     }
 
                     groups.shitCount = groups.shit.length;
+                    groups.allCount = groups.list.length;
                   }
                 });          
 
                 var msg = `Здравствуй, май ${profile.first_name}!`;
                 var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
 
-                girl[name] = {};
-                girl[name]['name'] = name;
-                girl[name]['id'] = id;
-                girl[name]['status'] = status;
-                girl[name]['photo'] = photo;
-                girl[name]['relation'] = relation;
-                girl[name]['online'] = online;
-                girl[name]['groups'] = groups;
-                girl[name]['sendMessageURL'] = sendMessageURL;
+                girl[fullname] = {};
+                girl[fullname]['name'] = fullname;
+                girl[fullname]['id'] = id;
+                girl[fullname]['status'] = status;
+                girl[fullname]['photo'] = photo;
+                girl[fullname]['relation'] = relation;
+                girl[fullname]['online'] = online;
+                girl[fullname]['groups'] = groups;
+                girl[fullname]['sendMessageURL'] = sendMessageURL;
 
                 if (!isEmpty(social)) {
-                  girl[name]['social'] = social;
+                  girl[fullname]['social'] = social;
                 }
               })
               .catch(e => {

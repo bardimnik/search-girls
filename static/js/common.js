@@ -53,7 +53,7 @@ viewWidth.addEventListener('click', () => {
 
     // Если количество колонок изменено, а затем что-то происходит с шириной,
     // то запрашиваем еще раз изменение колонок, чтобы перерассчитать ширину.
-
+    
     if (viewColumnFour.checked) {
       changeColumns(viewColumnFour, 4, 2);
     } else if (viewColumnEight.checked) {
