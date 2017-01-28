@@ -2,6 +2,7 @@ var container = document.querySelector('.container');
 var offlineItems = document.querySelectorAll('.girls__item--offline');
 var girls = document.querySelector('.girls');
 var girlsItem = document.querySelectorAll('.girls__item');
+var girlsItemShit = document.querySelectorAll('.girls__item--shit');
 var girlsPhoto = document.querySelectorAll('.girls__photo');
 var girlsGroups = document.querySelectorAll('.girls__groups');
 var girlsShowShit = document.querySelectorAll('.girls__show-shit');
@@ -10,6 +11,7 @@ var viewWidth = document.querySelector('.view__width');
 var viewColumnFour = document.querySelector('.view__column--four');
 var viewColumnEight = document.querySelector('.view__column--eight');
 var viewOnline = document.querySelector('.view__online');
+var viewShit = document.querySelector('.view__shit');
 
 var changeColumns = (checkbox, columns, anotherColumns) => {
   if (checkbox.checked) {
@@ -44,7 +46,7 @@ var changeColumns = (checkbox, columns, anotherColumns) => {
   }
 };
 
-viewWidth.addEventListener('click', () => {
+$(viewWidth).on('click', () => {
   if (!viewWidth.checked) {
     Object.assign(container.style, {
       maxWidth: '1170px',
@@ -53,7 +55,7 @@ viewWidth.addEventListener('click', () => {
 
     // Если количество колонок изменено, а затем что-то происходит с шириной,
     // то запрашиваем еще раз изменение колонок, чтобы перерассчитать ширину.
-    
+
     if (viewColumnFour.checked) {
       changeColumns(viewColumnFour, 4, 2);
     } else if (viewColumnEight.checked) {
@@ -71,15 +73,15 @@ viewWidth.addEventListener('click', () => {
   }
 });
 
-viewColumnFour.addEventListener('click', () => {
+$(viewColumnFour).on('click', () => {
   changeColumns(viewColumnFour, 4, 2);
 });
 
-viewColumnEight.addEventListener('click', () => {
+$(viewColumnEight).on('click', () => {
   changeColumns(viewColumnEight, 8, 2);
 });
 
-viewOnline.addEventListener('click', () => {
+$(viewOnline).on('click', () => {
   if (viewOnline.checked) {
     offlineItems.forEach(block => {
       block.style.display = 'none';
@@ -88,6 +90,18 @@ viewOnline.addEventListener('click', () => {
     offlineItems.forEach(block => {
       block.style.display = 'block';
     });
+  }
+});
+
+$(viewShit).on('click', () => {
+  if (viewShit.checked) {
+    girlsItemShit.forEach(item => {
+      item.style.display = 'none';
+    })
+  } else {
+    girlsItemShit.forEach(item => {
+      item.style.display = 'block';
+    })
   }
 });
 
