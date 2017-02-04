@@ -14,7 +14,13 @@ var listOfShitGroups = [
   'SLVK',
   'Amoral',
   'WebM',
-  '4ch'
+  '4ch',
+  'хайп',
+  'hype',
+  'KARDASHIANS',
+  'CLIQUE',
+  'мем',
+  'mem'
 ];
 
 module.exports = listOfShitGroups;
