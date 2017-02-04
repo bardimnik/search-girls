@@ -2,9 +2,7 @@ var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
   return (group, offset) => {
     var isEmpty = obj => {
       for (var prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-          return false;
-        }
+        if (obj.hasOwnProperty(prop)) return false;
       }
 
       return true;
@@ -52,13 +50,7 @@ var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
           var online = profile.online;
           var relation = profile.relation;
           var message = profile.can_write_private_message;
-          var className;
-
-          if (online) {
-            className = 'girls__item--online';
-          } else {
-            className = 'girls__item--offline';
-          }
+          var className = online ? 'girls__item--online' : 'girls__item--offline';
 
           var social = {};
               social.instagram = instagram;
@@ -97,7 +89,7 @@ var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
                   className += ' girls__item--shit';
                 }
 
-                var msg = `Здравствуй, май ${profile.first_name}!`;
+                var msg = `Привет ${profile.first_name}!`;
                 var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
 
                 girl[fullname] = {};
