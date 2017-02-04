@@ -9,6 +9,8 @@
   </head>
   <body>
     <div class="view">
+      <p class="view__count"><strong>Всего девушек:</strong> <%= Object.keys(data).length %></p>
+
       <input class="view__width" type="checkbox" checked>во весь экран
       <input class="view__column view__column--four" type="checkbox">4 колонки
       <input class="view__column view__column--eight" type="checkbox">8 колонок
@@ -66,7 +68,7 @@
                   <a href="#!" class="girls__close">x</a>
                   <ol class="girls__list">
                     <% data[key]["groups"]["shit"].forEach(group => { %>
-                      <li class="girls__item girls__item--vertical"><%= group %></li>
+                      <li><%= group %></li>
                     <% }); %>
                   </ol>
                 </div>

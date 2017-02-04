@@ -16,7 +16,6 @@ var viewShit = document.querySelector('.view__shit');
 var changeColumns = (checkbox, columns, anotherColumns) => {
   if (checkbox.checked) {
     // Снимаем один чекбокс
-
     if (checkbox == viewColumnFour) {
       viewColumnEight.checked = false;
     } else if (checkbox == viewColumnEight) {
@@ -55,7 +54,6 @@ $(viewWidth).on('click', () => {
 
     // Если количество колонок изменено, а затем что-то происходит с шириной,
     // то запрашиваем еще раз изменение колонок, чтобы перерассчитать ширину.
-
     if (viewColumnFour.checked) {
       changeColumns(viewColumnFour, 4, 2);
     } else if (viewColumnEight.checked) {
@@ -108,9 +106,7 @@ $(viewShit).on('click', () => {
 $(girlsGroups).on('click', (event) => {
   var target = event.target;
 
-  if (target.className != 'girls__show-shit') {
-    return;
-  }
+  if (target.className != 'girls__show-shit') return;
 
   var item = target.parentNode;
   var link = item.childNodes[3];
@@ -133,5 +129,5 @@ var nw = e => {
 
   setTimeout(function() {
     wndw.close();
-  }, 500);
+  }, 200);
 }

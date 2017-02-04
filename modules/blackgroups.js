@@ -20,7 +20,16 @@ var listOfShitGroups = [
   'KARDASHIANS',
   'CLIQUE',
   'мем',
-  'mem'
+  'mem',
+  'Optimus Gang',
+  'депрессия',
+  'ПИКЧЕЗНАНИЯ',
+  'пикчамэйкер',
+  'МЕМ МАСКИ',
+  'на стиле',
+  'суицид',
+  'грусть',
+  'MMXVII'
 ];
 
 module.exports = listOfShitGroups;
