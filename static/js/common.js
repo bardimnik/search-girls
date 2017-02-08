@@ -7,11 +7,22 @@ var girlsPhoto = document.querySelectorAll('.girls__photo');
 var girlsGroups = document.querySelectorAll('.girls__groups');
 var girlsShowShit = document.querySelectorAll('.girls__show-shit');
 
+var viewNumber = document.querySelector('.view__number');
 var viewWidth = document.querySelector('.view__width');
 var viewColumnFour = document.querySelector('.view__column--four');
 var viewColumnEight = document.querySelector('.view__column--eight');
 var viewOnline = document.querySelector('.view__online');
 var viewShit = document.querySelector('.view__shit');
+
+var findCountGirls = () => {
+  var count = 0;
+
+  girlsItem.forEach(item => {
+    if (item.style.display != 'none') count ++;
+  });
+
+  viewNumber.innerHTML = count;  
+};
 
 var changeColumns = (checkbox, columns, anotherColumns) => {
   if (checkbox.checked) {
@@ -89,18 +100,22 @@ $(viewOnline).on('click', () => {
       block.style.display = 'block';
     });
   }
+
+  findCountGirls();
 });
 
 $(viewShit).on('click', () => {
   if (viewShit.checked) {
     girlsItemShit.forEach(item => {
       item.style.display = 'none';
-    })
+    });
   } else {
     girlsItemShit.forEach(item => {
       item.style.display = 'block';
-    })
+    });
   }
+
+  findCountGirls();
 });
 
 $(girlsGroups).on('click', (event) => {
@@ -130,4 +145,6 @@ var nw = e => {
   setTimeout(function() {
     wndw.close();
   }, 200);
-}
+};
+
+findCountGirls();
