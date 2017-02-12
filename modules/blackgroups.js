@@ -29,7 +29,10 @@ var listOfShitGroups = [
   'на стиле',
   'суицид',
   'грусть',
-  'MMXVII'
+  'MMXVII',
+  'топ',
+  'шарю',
+  'шарить'
 ];
 
 module.exports = listOfShitGroups;
