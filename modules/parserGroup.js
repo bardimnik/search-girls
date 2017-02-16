@@ -28,7 +28,7 @@ var parserGroup = (girl, token) => {
           var fullname = `${name} ${surname}`;
           var isNormallyName;
 
-          if (!/[А-Яа-яЁё]/g.test(name)) name = translit(name, true);
+          if (!/[А-Яа-яЁё]/g.test(fullname)) fullname = `${translit(fullname, true)} [en]`;
 
           // Делаем проверку фамилии
           for (var lastname in shittySurname) {

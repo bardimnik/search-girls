@@ -144,7 +144,7 @@ var nw = e => {
 
   setTimeout(function() {
     wndw.close();
-  }, 8200);
+  }, 500);
 };
 
 findCountGirls();
