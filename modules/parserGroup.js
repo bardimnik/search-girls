@@ -1,4 +1,9 @@
-var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
+const rp = require('request-promise');
+const shittyGroups = require('./blackgroups');
+const shittySurname = require('./surname');
+const translit = require('./translit');
+
+var parserGroup = (girl, token) => {
   return (group, offset) => {
     var isEmpty = obj => {
       for (var prop in obj) {
@@ -22,6 +27,8 @@ var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
           var surname = profile.last_name;
           var fullname = `${name} ${surname}`;
           var isNormallyName;
+
+          if (!/[А-Яа-яЁё]/g.test(name)) name = translit(name, true);
 
           // Делаем проверку фамилии
           for (var lastname in shittySurname) {
@@ -74,8 +81,8 @@ var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
                   if (group.type == 'page') {
                     groups.list.push(group.name);
 
-                    for (var public in listOfShitGroups) {
-                      if (group.name.match(listOfShitGroups[public])) {
+                    for (var public in shittyGroups) {
+                      if (group.name.match(shittyGroups[public])) {
                         groups.shit.push(group.name);
                       }
                     }
@@ -89,23 +96,23 @@ var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
                   className += ' girls__item--shit';
                 }
 
-                var msg = `Привет ${profile.first_name}!`;
+                var msg = `Привет, ${profile.first_name}!`;
                 var sendMessageURL = `https://api.vk.com/method/messages.send?user_id=${id}&message=${encodeURIComponent(msg)}&access_token=${token}&v=5.60`;
 
-                girl[fullname] = {};
-                girl[fullname]['name'] = fullname;
-                girl[fullname]['id'] = id;
-                girl[fullname]['status'] = status;
-                girl[fullname]['photo'] = photo;
-                girl[fullname]['relation'] = relation;
-                girl[fullname]['online'] = online;
-                girl[fullname]['groups'] = groups;
-                girl[fullname]['className'] = className;
-                girl[fullname]['sendMessageURL'] = sendMessageURL;
+                var baby = {};
+                    baby.name = fullname;
+                    baby.id = id;
+                    baby.status = status;
+                    baby.photo = photo;
+                    baby.relation = relation;
+                    baby.online = online;
+                    baby.groups = groups;
+                    baby.className = className;
+                    baby.sendMessageURL = sendMessageURL;
 
-                if (!isEmpty(social)) {
-                  girl[fullname]['social'] = social;
-                }
+                if (!isEmpty(social)) baby.social = social;
+
+                girl.push(baby);
               })
               .catch(e => {
                 console.log(e);
@@ -113,9 +120,7 @@ var parserGroup = (rp, girl, token, listOfShitGroups, shittySurname) => {
           }
         });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   }
 };
 

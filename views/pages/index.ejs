@@ -19,87 +19,87 @@
     </div>
     <div class="container">
       <div class="girls">
-        <% for (var key in data) { %>
-          <div class="girls__item <%= data[key]["className"] %>">
-            <img class="girls__photo" src="<%= data[key]["photo"] %>">
+        <% data.forEach(item => { %>
+          <div class="girls__item <%= item.className %>">
+            <img class="girls__photo" src="<%= item.photo %>">
             <div class="girls__info">
-              <% if (data[key]["online"]) { %>
+              <% if (item.online) { %>
                 <p class="girls__name girls__name--online">
-                  <a href="https://vk.com/id<%= data[key]["id"] %>" class="girls__link">
-                    <%= data[key]["name"] %>
+                  <a href="https://vk.com/id<%= item.id %>" class="girls__link">
+                    <%= item.name %>
                   </a>
                 </p>
               <% } else { %>
                 <p class="girls__name girls__name--offline">
-                  <a href="https://vk.com/id<%= data[key]["id"] %>" class="girls__link">
-                    <%= data[key]["name"] %>
+                  <a href="https://vk.com/id<%= item.id %>" class="girls__link">
+                    <%= item.name %>
                   </a>
                 </p>
               <% } %>
-              <% if (data[key]["relation"] == 1) { %>
+              <% if (item.relation == 1) { %>
                 <p class="girls__relation">не замужем</p>
-              <% } else if (data[key]["relation"] == 3) { %>
+              <% } else if (item.relation == 3) { %>
                 <p class="girls__relation">помолвлена</p>
-              <% } else if (data[key]["relation"] == 4) { %>
+              <% } else if (item.relation == 4) { %>
                 <p class="girls__relation">замужем</p>
-              <% } else if (data[key]["relation"] == 6) { %>
+              <% } else if (item.relation == 6) { %>
                 <p class="girls__relation">в активном поиске</p>
-              <% } else if (data[key]["relation"] == 7) { %>
+              <% } else if (item.relation == 7) { %>
                 <p class="girls__relation">влюблена</p>
               <% } %>
-              <% if (data[key]["status"].length) { %>
+              <% if (item.status.length) { %>
                 <p class="girls__status">
-                  <%= data[key]["status"] %>
+                  <%= item.status %>
                 </p>
               <% } %>
-              <% if (data[key]["groups"]["shit"].length) { %>
+              <% if (item.groups.shit.length) { %>
                 <div class="girls__groups">
                   <a href="#!" class="girls__show-shit">
-                    <% if (data[key]["groups"]["shitCount"] < 7) { %>
-                      <% for (var i = 0, l = data[key]["groups"]["shitCount"]; i < l; i++) { %>
+                    <% if (item.groups.shitCount < 7) { %>
+                      <% for (var i = 0, l = item.groups.shitCount; i < l; i++) { %>
                         💩
                       <% } %>
                     <% } else { %>
                       💩 (😢)
                     <% } %>
                     /
-                    <%= data[key]["groups"]["allCount"] %>
+                    <%= item.groups.allCount %>
                   </a>
                   <a href="#!" class="girls__close">x</a>
                   <ol class="girls__list">
-                    <% data[key]["groups"]["shit"].forEach(group => { %>
+                    <% item.groups.shit.forEach(group => { %>
                       <li><%= group %></li>
                     <% }); %>
                   </ol>
                 </div>
               <% } %>
               <div class="girls__socials">
-                <% if (data[key]["social"]["instagram"]) { %>
+                <% if (item.social.instagram) { %>
                   <p class="girls__social girls__social--instagram">
                     instagram:
-                    <a href="https://instagram.com/<%= data[key]["social"]["instagram"] %>">
-                      @<%= data[key]["social"]["instagram"] %>                      
+                    <a href="https://instagram.com/<%= item.social.instagram %>">
+                      @<%= item.social.instagram %>
                     </a>
                   </p>
-                <% } else if (data[key]["social"]["twitter"]) { %>
+                <% } else if (item.social.twitter) { %>
                   <p class="girls__social girls__social--twitter">
                     twitter:
-                    <a href="https://twitter.com/<%= data[key]["social"]["twitter"] %>">
-                      @<%= data[key]["social"]["twitter"] %>
+                    <a href="https://twitter.com/<%= item.social.twitter %>">
+                      @<%= item.social.twitter %>
                     </a>
                   </p>
-                <% } else if (data[key]["social"]["skype"]) { %>                  
+                <% } else if (item.social.skype) { %>
                   <p class="girls__social girls__social--skype">
-                    skype: @<%= data[key]["social"]["skype"] %>
+                    skype: @<%= item.social.skype %>
                   </p>
                 <% } %>              
               </div>
-              <a class="girls__send-message" href="<%= data[key]["sendMessageURL"] %>" onclick="nw(this.href, 1); return false;">
+              <a class="girls__send-message" href="<%= item.sendMessageURL %>" onclick="nw(this.href, 1); return false;">
                   💌
               </a>
             </div>
           </div>
-        <% } %>
+        <% }); %>
       </div>
     </div>
     <div class="footer">

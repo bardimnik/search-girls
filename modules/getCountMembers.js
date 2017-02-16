@@ -1,12 +1,12 @@
-var getCountMembers = (request) => {
-  return (group, max) => {
-    var res = request('GET', `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=0&v=5.60`);
-    var body = JSON.parse(res.getBody());
+const request = require('sync-request');
 
-    if (body.response.count > max) return max;
+var getCountMembers = (group, max) => {
+  var res = request('GET', `https://api.vk.com/method/groups.getMembers?group_id=${group}&offset=0&v=5.60`);
+  var body = JSON.parse(res.getBody());
 
-    return body.response.count
-  }
+  if (body.response.count > max) return max;
+
+  return body.response.count
 };
 
 module.exports = getCountMembers;

@@ -1,6 +1,8 @@
-var server = (express, parserGroup, getCountMembers) => {
+const express = require('express');
+var app = express();
+
+var server = (parserGroup, getCountMembers) => {
   return (girl, group, offset, count) => {
-    var app = express();
     var port = process.env.PORT || 1488;
     var count = Math.round(count / 1000) * 1000;
 
@@ -30,7 +32,7 @@ var server = (express, parserGroup, getCountMembers) => {
 
         app.listen(port);
 
-        console.log(`Сервер запущен --> http://localhost:${port}`);
+        console.log(`Listening on http://localhost:${port}`);
       })
       .catch(err => {
         console.log(err);
