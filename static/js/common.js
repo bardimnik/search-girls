@@ -118,7 +118,7 @@ $(viewShit).on('click', () => {
   findCountGirls();
 });
 
-$(girlsGroups).on('click', (event) => {
+$(girlsGroups).on('click', event => {
   var target = event.target;
 
   if (target.className != 'girls__show-shit') return;
@@ -136,15 +136,11 @@ $(girlsGroups).on('click', (event) => {
   });
 });
 
-var nw = e => {
-  var h = 500;
-  var w = 500;
+var nw = url => {
+  var options = "menubar=no,location=no,resizable=no,scrollbars=no,status=no,width=200,height=200,left=500,top=500";
+  var wind = window.open(url, 'message', options);
 
-  var wndw = window.open(e, '', 'scrollbars=1,height=' + Math.min(h, screen.availHeight) + ', width=' + Math.min(w, screen.availWidth) + ',left=' + Math.max(0, (screen.availWidth - w) / 2) + ',top=' + Math.max(0, (screen.availHeight - h) / 2));
-
-  setTimeout(function() {
-    wndw.close();
-  }, 500);
+  setTimeout(() => wind.close(), 150);
 };
 
 findCountGirls();
