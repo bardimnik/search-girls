@@ -52,11 +52,76 @@ a {
   }
 }
 
+.wrapper {
+  width: 100%;
+  max-width: 960px;
+  margin: 50px auto;
+}
+
 .container {
   width: 100%;
   margin: 0 auto;
   padding: 40px 0 0 0;
   column-gap: 5px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 400;
+  font-size: 36px;
+  padding: 50px 0;
+}
+
+.ask {
+  max-width: 500px;
+  margin: 0 auto;
+
+  & input {
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'PT Sans', Arial;
+    box-sizing: border-box;
+    border: 2px solid #2c3e50;
+    transition: all .85s;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__input {
+    width: 75%;
+    float: left;
+    border-right: 0!important;
+    color: #7f8c8d;
+
+    &--url {
+      border-top-left-radius: 5px;
+      border-bottom: 0!important;
+    }
+
+    &--count {
+      border-bottom-left-radius: 5px;
+    }
+  }
+
+  &__submit {
+    width: 25%;
+    float: right;
+    height: 82px;
+    margin-top: -40px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-transform: lowercase;
+    color: #fff;
+    background: #2c3e50;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 }
 
 .girls {  

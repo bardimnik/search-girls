@@ -1,5 +1,7 @@
+const rp = require('request-promise');
 const express = require('express');
-var app = express();
+const bodyParser = require('body-parser');
+const app = express();
 
 var server = (parserGroup, getCountMembers) => {
   return (girl, group, offset, count) => {
@@ -22,12 +24,43 @@ var server = (parserGroup, getCountMembers) => {
 
     server
       .then(result => {
+        app.use(bodyParser());
         app.use(express.static('./static'));
         app.set('view engine', 'ejs');
+
         app.get('/', (req, res) => {
-          res.render('pages/index', {
+          res.render('pages/index');
+        });
+
+        app.get('/girl', (req, res) => {
+          res.render('pages/girl', {
             data: girl
           });
+        });
+
+        app.post('/', (req, res) => {
+          var public = req.body.girl.public.trim();
+
+          if (public.search('vk.com/') != -1) {
+            var options = {
+              uri: `https://api.vk.com/method/groups.getById?group_id=${public.split('vk.com/')[1].split('?')[0]}&v=5.62`,
+              json: true
+            };
+
+            rp(options)
+              .then(body => {
+                if (!body.error) {
+                  console.log('okay');
+                } else {
+                  console.log('group not find');
+                }
+              })
+              .catch(e => {
+                console.log(e);
+              });
+          } else {
+            console.log('wrong');
+          }
         });
 
         app.listen(port);

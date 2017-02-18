@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Search Girls by @bifot</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <meta name="viewport" content="user-scalable=0, width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="view">
+      <p class="view__count"><strong>Всего девушек:</strong> <span class="view__number"></span></p>
+
+      <input class="view__width" type="checkbox" checked>во весь экран
+      <input class="view__column view__column--four" type="checkbox">4 колонки
+      <input class="view__column view__column--eight" type="checkbox">8 колонок
+      <input class="view__online" type="checkbox">online
+      <input class="view__shit" type="checkbox">без плохих подписок
+    </div>
+    <div class="container">
+      <div class="girls">
+        <% data.forEach(item => { %>
+          <div class="girls__item <%= item.className %>">
+            <img class="girls__photo" src="<%= item.photo %>">
+            <div class="girls__info">
+              <% if (item.online) { %>
+                <p class="girls__name girls__name--online">
+                  <a href="https://vk.com/id<%= item.id %>" class="girls__link">
+                    <%= item.name %>
+                  </a>
+                </p>
+              <% } else { %>
+                <p class="girls__name girls__name--offline">
+                  <a href="https://vk.com/id<%= item.id %>" class="girls__link">
+                    <%= item.name %>
+                  </a>
+                </p>
+              <% } %>
+              <% if (item.relation == 1) { %>
+                <p class="girls__relation">не замужем</p>
+              <% } else if (item.relation == 3) { %>
+                <p class="girls__relation">помолвлена</p>
+              <% } else if (item.relation == 4) { %>
+                <p class="girls__relation">замужем</p>
+              <% } else if (item.relation == 6) { %>
+                <p class="girls__relation">в активном поиске</p>
+              <% } else if (item.relation == 7) { %>
+                <p class="girls__relation">влюблена</p>
+              <% } %>
+              <% if (item.status.length) { %>
+                <p class="girls__status">
+                  <%= item.status %>
+                </p>
+              <% } %>
+              <% if (item.groups.shit.length) { %>
+                <div class="girls__groups">
+                  <a href="#!" class="girls__show-shit">
+                    <% if (item.groups.shitCount < 7) { %>
+                      <% for (var i = 0, l = item.groups.shitCount; i < l; i++) { %>
+                        💩
+                      <% } %>
+                    <% } else { %>
+                      💩 (😢)
+                    <% } %>
+                    /
+                    <%= item.groups.allCount %>
+                  </a>
+                  <a href="#!" class="girls__close">x</a>
+                  <ol class="girls__list">
+                    <% item.groups.shit.forEach(group => { %>
+                      <li><%= group %></li>
+                    <% }); %>
+                  </ol>
+                </div>
+              <% } %>
+              <div class="girls__socials">
+                <% if (item.social.instagram) { %>
+                  <p class="girls__social girls__social--instagram">
+                    instagram:
+                    <a href="https://instagram.com/<%= item.social.instagram %>">
+                      @<%= item.social.instagram %>
+                    </a>
+                  </p>
+                <% } else if (item.social.twitter) { %>
+                  <p class="girls__social girls__social--twitter">
+                    twitter:
+                    <a href="https://twitter.com/<%= item.social.twitter %>">
+                      @<%= item.social.twitter %>
+                    </a>
+                  </p>
+                <% } else if (item.social.skype) { %>
+                  <p class="girls__social girls__social--skype">
+                    skype: @<%= item.social.skype %>
+                  </p>
+                <% } %>              
+              </div>
+              <a class="girls__send-message" href="<%= item.sendMessageURL %>" onclick="nw(this.href, 1); return false;">
+                  💌
+              </a>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+    <div class="footer">
+      <p class="footer__copyright">
+        © Search Girls by <a href="http://bifot.ru">@bifot</a>, 2016
+      </p>
+    </div>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+  </body>
+</html>
