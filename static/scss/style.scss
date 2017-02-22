@@ -14,6 +14,7 @@ img {
 
 a {
   text-decoration: none;
+
   &:hover {
     text-decoration: underline;
   }
@@ -25,46 +26,57 @@ a {
   &-track {
     background: #eee;
   }
-  
+
   &-thumb {
     background: darken(#eee, 25%);
   }
 }
 
 .view {
-  position: fixed;
-  z-index: 20;
   width: 100%;
-  margin: 0 auto;
+  z-index: 20;
+  position: fixed;
   padding: 10px 0;
   text-align: center;
-  background: #fff;
+  background: rgba(0, 0, 0, 0.75);
 
-  &__count {
-    position: absolute;
-    z-index: 50;
-    top: 10px;
-    left: 10px;
+  & p {
+    display: inline-block;
+    line-height: 1.8;
+    padding: 0 20px;
+    color: #fff;
   }
-  
-  & input {
-    margin: 0 10px;
+
+  & a {
+    color: #fff;
+
+    &:hover {
+      color: darken(#fff, 10%);
+      border-bottom: 1px solid darken(#fff, 10%);
+      text-decoration: none;
+    }
+  }
+
+  & .active {
+    color: darken(#fff, 10%);
+    border-bottom: 1px solid darken(#fff, 10%);
+    text-decoration: none;
   }
 }
 
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 40px 0 0 0;
+  padding: 48px 0 0 0;
   column-gap: 5px;
 }
 
-.girls {  
+.girls {
   &__item {
     position: relative;
     display: inline-block;
     width: auto;
-    
+
     &--vertical {
       display: block;
     }
@@ -74,7 +86,7 @@ a {
     width: 100vh;
     height: inherit;
   }
-  
+
   &__info {
     font-size: 16px;
     position: absolute;
@@ -84,10 +96,10 @@ a {
     width: 100%;
     height: 99.25%;
     padding: 10px;
-    transition: all .45s;
+    transition: all 0.45s;
     opacity: 0;
     background: rgba(0, 0, 0, .8);
-    
+
     &:hover {
       opacity: 1;
     }
@@ -95,19 +107,19 @@ a {
 
   &__status {
     font-style: italic;
-    padding: 10px 0 5px 0;
+    padding: 10px 0 5px;
     color: #fff;
   }
-  
+
   &__show-shit {
     position: absolute;
     bottom: 0;
     left: 0;
     padding: 10px;
-    transition: all .25s;
+    transition: all 0.25s;
     border-top-right-radius: 10px;
     background: #fff;
-    
+
     &:hover {
       padding-bottom: 15px;
       text-decoration: none;
@@ -129,7 +141,7 @@ a {
     color: #fff;
     background: #000;
   }
-  
+
   &__close {
     font-weight: 700;
     position: absolute;
@@ -138,7 +150,7 @@ a {
     right: 20px;
     display: none;
     color: #fff;
-    
+
     &:hover {
       text-decoration: none;
     }
@@ -152,7 +164,7 @@ a {
       content: '';
       border-radius: 9999px;
     }
-    
+
     &--online:after {
       background: #27ae60;
     }
@@ -165,20 +177,20 @@ a {
   &__link {
     color: #fff;
   }
-  
+
   &__relation {
     color: #e74c3c;
   }
-  
+
   &__send-message {
     position: absolute;
     right: 0;
     bottom: 0;
     padding: 10px;
-    transition: all .25s;
+    transition: all 0.25s;
     border-top-left-radius: 10px;
     background: #fff;
-    
+
     &:hover {
       padding-bottom: 15px;
       text-decoration: none;
@@ -190,7 +202,7 @@ a {
     overflow-x: hidden;
     overflow-y: auto;
     height: 6.5em;
-    
+
     &::-webkit-scrollbar {
       width: 4px;
     }
@@ -200,7 +212,7 @@ a {
     font-weight: 700;
     padding: 5px 0;
     color: #fff;
-    
+
     & a {
       font-weight: 400;
       text-decoration: none;
@@ -213,7 +225,7 @@ a {
     }
 
     &:first-child {
-      margin: 10px 0 0 0;
+      margin: 10px 0 0;
     }
   }
 }
@@ -225,37 +237,31 @@ a {
     text-align: center;
   }
 }
-
 @media (min-width: 300px) {
   .container {
     column-count: 1;
   }
 }
-
 @media (min-width: 420px) {
   .container {
     column-count: 2;
   }
 }
-
 @media (min-width: 900px) {
   .container {
     column-count: 3;
   }
 }
-
 @media (min-width: 1200px) {
   .container {
     column-count: 4;
   }
 }
-
 @media (min-width: 1500px) {
   .container {
     column-count: 5;
   }
 }
-
 @media (min-width: 1800px) {
   .container {
     column-count: 6;

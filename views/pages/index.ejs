@@ -9,13 +9,11 @@
   </head>
   <body>
     <div class="view">
-      <p class="view__count"><strong>Всего девушек:</strong> <span class="view__number"></span></p>
-
-      <input class="view__width" type="checkbox" checked>во весь экран
-      <input class="view__column view__column--four" type="checkbox">4 колонки
-      <input class="view__column view__column--eight" type="checkbox">8 колонок
-      <input class="view__online" type="checkbox">online
-      <input class="view__shit" type="checkbox">без плохих подписок
+      <p class="view__count"><span class="view__number"></span> девушек</p>
+      <p><a href="#" class="view__column view__column--four">4 колонки</a></p>
+      <p><a href="#" class="view__column view__column--eight">8 колонок</a></p>
+      <p><a href="#" class="view__online">online</a></p>
+      <p><a href="#" class="view__shit">по подпискам</a></p>
     </div>
     <div class="container">
       <div class="girls">
@@ -92,7 +90,7 @@
                   <p class="girls__social girls__social--skype">
                     skype: @<%= item.social.skype %>
                   </p>
-                <% } %>              
+                <% } %>
               </div>
               <a class="girls__send-message" href="<%= item.sendMessageURL %>" onclick="nw(this.href, 1); return false;">
                   💌
