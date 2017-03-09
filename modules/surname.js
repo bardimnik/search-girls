@@ -1,4 +1,4 @@
-var surname = [
+module.exports = [
   'Рубчинская',
   'Топская',
   'Ветеранова',
@@ -13,5 +13,3 @@ var surname = [
   'Пирожок',
   'Чай'
 ];
-
-module.exports = surname;

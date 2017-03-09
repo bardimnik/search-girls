@@ -1,9 +1,27 @@
-const girl = [];
-const group = 'belleeee';
-const token = 'token';
+var express = require('express');
+var app = express();
 
-const getCountMembers = require('./modules/getCountMembers');
-const parserGroup = require('./modules/parserGroup')(girl, token);
-const server = require('./modules/server')(parserGroup, getCountMembers);
+var getCountMembers = require('./modules/getCountMembers');
+var parserGroup = require('./modules/parserGroup');
 
-server(girl, group, 0, getCountMembers(group, 1000));
+var group = 'belleeee';
+var token = 'token';
+
+getCountMembers(group, 10000).then(response => {
+  var count = Math.round(response / 1000) * 1000;
+  var port = process.env.PORT || 1488;
+
+  parserGroup(group, count, token).then(data => {
+    app.use(express.static('./static'));
+    app.set('view engine', 'ejs');
+    app.get('/', (req, res) => {
+      res.render('pages/index', {
+        data: data
+      });
+    });
+
+    app.listen(port);
+
+    console.log(`Listening on http://localhost:${port}`);
+  });
+});

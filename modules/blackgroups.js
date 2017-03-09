@@ -1,4 +1,4 @@
-var listOfShitGroups = [
+module.exports = [
   'найтивыход',
   'Овсянка, сэр!',
   'Щебестан',
@@ -34,5 +34,3 @@ var listOfShitGroups = [
   'шарю',
   'шарить'
 ];
-
-module.exports = listOfShitGroups;
