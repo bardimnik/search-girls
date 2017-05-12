@@ -18,7 +18,7 @@
     <div class="container">
       <div class="girls">
         <% data.forEach(item => { %>
-          <div class="girls__item <%= item.className %>">
+          <div class="girls__item <%= item.extra.className %>">
             <img class="girls__photo" src="<%= item.photo %>">
             <div class="girls__info">
               <% if (item.online) { %>
@@ -34,59 +34,48 @@
                   </a>
                 </p>
               <% } %>
-              <% if (item.relation == 1) { %>
-                <p class="girls__relation">не замужем</p>
-              <% } else if (item.relation == 3) { %>
-                <p class="girls__relation">помолвлена</p>
-              <% } else if (item.relation == 4) { %>
-                <p class="girls__relation">замужем</p>
-              <% } else if (item.relation == 6) { %>
-                <p class="girls__relation">в активном поиске</p>
-              <% } else if (item.relation == 7) { %>
-                <p class="girls__relation">влюблена</p>
-              <% } %>
               <% if (item.status.length) { %>
                 <p class="girls__status">
                   <%= item.status %>
                 </p>
               <% } %>
-              <% if (item.groups.shit.length) { %>
+              <% if (item.extra.groups.shit.length) { %>
                 <div class="girls__groups">
                   <a href="#!" class="girls__show-shit">
-                    <% if (item.groups.shitCount < 7) { %>
-                      <% for (var i = 0, l = item.groups.shitCount; i < l; i++) { %>
+                    <% if (item.extra.groups.shitCount < 7) { %>
+                      <% for (var i = 0, l = item.extra.groups.shitCount; i < l; i++) { %>
                         💩
                       <% } %>
                     <% } else { %>
                       💩 (😢)
                     <% } %>
                     /
-                    <%= item.groups.allCount %>
+                    <%= item.extra.groups.list.length %>
                   </a>
                   <a href="#!" class="girls__close">x</a>
                   <ol class="girls__list">
-                    <% item.groups.shit.forEach(group => { %>
+                    <% item.extra.groups.shit.forEach(group => { %>
                       <li><%= group %></li>
                     <% }); %>
                   </ol>
                 </div>
               <% } %>
               <div class="girls__socials">
-                <% if (item.social.instagram) { %>
+                <% if (item.social && item.social.instagram) { %>
                   <p class="girls__social girls__social--instagram">
                     instagram:
                     <a href="https://instagram.com/<%= item.social.instagram %>">
                       @<%= item.social.instagram %>
                     </a>
                   </p>
-                <% } else if (item.social.twitter) { %>
+                <% } else if (item.social && item.social.twitter) { %>
                   <p class="girls__social girls__social--twitter">
                     twitter:
                     <a href="https://twitter.com/<%= item.social.twitter %>">
                       @<%= item.social.twitter %>
                     </a>
                   </p>
-                <% } else if (item.social.skype) { %>
+                <% } else if (item.social && item.social.skype) { %>
                   <p class="girls__social girls__social--skype">
                     skype: @<%= item.social.skype %>
                   </p>

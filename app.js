@@ -1,27 +1,22 @@
-var express = require('express');
-var app = express();
+const express = require('express')
+const collector = require('./modules/collector')
 
-var getCountMembers = require('./modules/getCountMembers');
-var parserGroup = require('./modules/parserGroup');
+const app = express()
 
-var group = 'belleeee';
-var token = 'token';
+const group = process.env.GROUP
+const token = process.env.TOKEN
 
-getCountMembers(group, 10000).then(response => {
-  var count = Math.round(response / 1000) * 1000;
-  var port = process.env.PORT || 1488;
+app.use(express.static('./static'))
+app.set('view engine', 'ejs')
 
-  parserGroup(group, count, token).then(data => {
-    app.use(express.static('./static'));
-    app.set('view engine', 'ejs');
-    app.get('/', (req, res) => {
-      res.render('pages/index', {
-        data: data
-      });
-    });
+app.get('/', (req, res) => {
+  collector(group, 4000, token).then(body => {
+    res.render('pages/index', {
+      data: body
+    })
+  })
+})
 
-    app.listen(port);
-
-    console.log(`Listening on http://localhost:${port}`);
-  });
-});
+app.listen(80, () => {
+  console.log(`Listening on localhost...`)
+})
